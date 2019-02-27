@@ -1,7 +1,3 @@
-[Apuntes de Python]: https://github.com/juanlu-millan/Lenguajes-de-Marcas/blob/master/ApuntesPython.txt
-# Apuntes de Lenguaje de Marcas
-[Apuntes de Python]
-
 # Proyecto XML
 - Mostrar conctatos de cada colegio que no pertenece a la pedania de lorca
 - Cuenta los colegios que no tiene pagian web y muestra su nombre
