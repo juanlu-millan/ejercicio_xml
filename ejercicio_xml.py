@@ -13,17 +13,17 @@ while (True):
     if opcion==1:
 
         #Lista conctatos de cada colegio que no pertenece a la pedania de lorca
-        def colegio(doc):
-
-            if doc.xpath(//Localizacion[not(Pedania='Lorca')]/text()):
-                lista = doc.xpath("//Web/text() | //Email/text() | //Telefono/text() | //Fax/text() | //Localizacion[not(Pedania='Lorca')]")
-
-            return lista
-
+        # def colegio(doc):
+        #
+        #     if doc.xpath(//Localizacion[not(Pedania='Lorca')]/text()):
+        #         lista = doc.xpath("//Web/text() | //Email/text() | //Telefono/text() | //Fax/text() | //Localizacion[not(Pedania='Lorca')]")
+        #
+        #     return lista
+        #
         for col in colegio(doc):
             print(col)
 
-    if opcion==2:
+    elif opcion==2:
 
         #Cuenta los colegios que no tiene página web y muestra su nombre
 
@@ -33,8 +33,9 @@ while (True):
 
         for col in colegio(doc):
             print(col)
+        print ("")
 
-    if opcion==3:
+    elif opcion==3:
 
         #Pide una pedania y muestra el nombre de los colegios y su dirección
 
@@ -46,20 +47,21 @@ while (True):
 
         for calle,centros in poblacion(doc):
             print (centros," - ",calle)
+        print ("")
 
-
-    if opcion==4:
-
-
-
-
-
-
-
-
-
-
-    if opcion==5:
+    #
+    # elif opcion==4:
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # elif opcion==5:
 
     elif opcion == 0:
         break;
