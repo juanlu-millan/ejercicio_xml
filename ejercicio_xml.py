@@ -23,7 +23,6 @@ doc = etree.parse('colegios-lorca.xml')
 #
 # #Pide una pedania y muestra el nombre de los colegios y su dirección
 
-
 def poblacion(doc):
     pueblo=input("Dime una pedania:").capitalize()
     calle = doc.xpath('//Localizacion[Pedania="%s"]/./Direccion/text()'%pueblo)
