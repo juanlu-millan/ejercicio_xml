@@ -59,11 +59,12 @@ while (True):
 
     elif opcion==4:
         def telefono(telefono,doc):
-            centro =  doc.xpath('')
+            centro =  doc.xpath('//Contacto[Telefono="%s"]/../Centro/text()'%telefono)
             return centro
-        telefono=input("Dime número de telefono de un centro:")
 
-        print ()
+        tlf=input("Dime número de telefono de un centro:")
+
+        print (telefono(tlf,doc))
 
     #Introduce nombre del Instituto y te da un enlace a OpenStreetMap de su localización
 
