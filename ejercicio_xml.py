@@ -1,6 +1,12 @@
 from lxml import etree
 doc = etree.parse('colegios-lorca.xml')
 
+from funciones_xml import contacto
+from funciones_xml import colegio
+from funciones_xml import poblacion
+from funciones_xml import telefono
+from funciones_xml import localizar
+
 while (True):
     print('''
     Elige una opcion:
@@ -13,30 +19,14 @@ while (True):
     opcion=int(input("Opcion: "))
 
     if opcion==1:
-
     #Lista conctatos de cada colegio que no pertenece a la pedania de lorca
-        def colegio(doc):
-            lista = doc.xpath('''//Localizacion[not(Pedania='Lorca')]/../Centro/text() |
-            //Localizacion[not(Pedania='Lorca')]/../Contacto/Web/text() |
-            //Localizacion[not(Pedania='Lorca')]/../Contacto/Telefono/text() |
-            //Localizacion[not(Pedania='Lorca')]/../Contacto/Email/text()
-            //Localizacion[not(Pedania='Lorca')]/../Contacto/Fax/text()
-            ''')
-
-            return lista
-
-        for col in colegio(doc):
+        for col in contacto(doc):
             print(col)
 
 
     elif opcion==2:
 
     #Cuenta los colegios que no tiene página web y muestra su nombre
-
-        def colegio(doc):
-            lista = doc.xpath("//Contacto[not(Web)]/../Centro/text()")
-            return lista
-
         for col in colegio(doc):
             print(col)
         print ("")
@@ -45,43 +35,29 @@ while (True):
 
     #Pide una pedania y muestra el nombre de los colegios y su dirección
 
-        def poblacion(doc):
-            pueblo=input("Dime una pedania:").capitalize()
-            calle = doc.xpath('//Localizacion[Pedania="%s"]/./Direccion/text()'%pueblo)
-            centro = doc.xpath('//Centro[//Localizacion[Pedania="%s"]]/text()'%pueblo)
-            return zip(calle,centro)
+        pueblo=input("Dime una pedania:").capitalize()
 
-        for calle,centros in poblacion(doc):
+        for calle,centros in poblacion(pueblo,doc):
             print (centros," - ",calle)
         print ("")
 
-    #Introduce un número de teléfono y muestra el Centro al que pertenece
+
 
     elif opcion==4:
-        def telefono(telefono,doc):
-            centro =  doc.xpath('//Contacto[Telefono="%s"]/../Centro/text()'%telefono)
-            return centro
+    #Introduce un número de teléfono y muestra el Centro al que pertenece
 
         tlf=input("Dime número de telefono de un centro:")
 
         print (telefono(tlf,doc))
 
-    #Introduce nombre del Instituto y te da un enlace a OpenStreetMap de su localización
+
 
     elif opcion==5:
-        def localizar(doc):
-            centro=input("Dime el nombre del centro para obtener su cordenada:").upper()
-            latitud = str(doc.xpath('//colegio_lorca[Centro="%s"]/Localizacion/Coordenadas/Latitud/text()'%centro))
-            longitud = str(doc.xpath('//colegio_lorca[Centro="%s"]/Localizacion/Coordenadas/Longitud/text()'%centro))
+    #Introduce nombre del Instituto y te da un enlace a OpenStreetMap de su localización
 
-            latitud2 = latitud.replace("[","").replace("]","").replace("'","")
-            longitud2 = longitud.replace("[","").replace("]","").replace("'","")
-            print (latitud2,latitud2)
-            localizador="http://www.openstreetmap.org/#map=16/%s/%s"%(latitud2,longitud2)
-            return localizador
+        colegio=input("Dime el nombre del centro para obtener su cordenada:").upper()
 
-        print (localizar(doc))
-
+        print (localizar(colegio,doc))
 
 
     elif opcion == 0:
